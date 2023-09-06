@@ -6,16 +6,23 @@ import pessoa.Pessoa;
 public class Corrente extends Conta {
     private double limite;
 
-    public Corrente(int numero, double saldo, int qtdTransacoes, Pessoa titular, double limite) {
-        super(numero, saldo, qtdTransacoes, titular);
+    public Corrente(Pessoa titular, double limite, String senha) {
+        super(titular,senha);
         this.limite = limite;
     }
 
-    public void saque (){
-
+    public void saque (double valor){
+        if(!(this.saldo() - valor <0 - this.limite)){
+            this.setSaldo(this.saldo()-valor);
+        }
     }
 
-    public void transferencia(){
-
+    public Boolean transferencia(Conta contaParaReceber, double valor){
+        if(!(this.saldo() - valor <0 - this.limite)) {
+            this.setSaldo(this.saldo() - valor);
+            contaParaReceber.setSaldo(this.saldo() + valor);
+            return true;
+        }
+        return false;
     }
 }

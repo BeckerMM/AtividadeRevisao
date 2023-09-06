@@ -8,8 +8,8 @@ public class Credito extends Conta {
 
     private double limite;
 
-    public Credito(int numero, double saldo, int qtdTransacoes, Pessoa titular, int diaDaFatura, double limite) {
-        super(numero, saldo, qtdTransacoes, titular);
+    public Credito( Pessoa titular, int diaDaFatura, double limite,String senha) {
+        super( titular,senha);
         this.diaDaFatura = diaDaFatura;
         this.limite = limite;
     }

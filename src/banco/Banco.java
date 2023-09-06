@@ -1,11 +1,15 @@
 package banco;
+
+import conta.Conta;
 import pessoa.Pessoa;
+
 import java.util.ArrayList;
+
 public class Banco {
     private String nome;
     private String endereço;
     private int agencia;
-    private ArrayList<Pessoa> clientes;
+    private ArrayList<Conta> contas = new ArrayList<>();
     private double juros;
     private double taxaDeServico;
 
@@ -13,13 +17,21 @@ public class Banco {
         this.nome = nome;
         this.endereço = endereço;
         this.agencia = agencia;
-        this.clientes = clientes;
         this.juros = juros;
         this.taxaDeServico = taxaDeServico;
     }
 
-    public void cadastrarConta(){
+    public void cadastrarConta(Conta conta) {
+        this.contas.add(conta);
 
-
+    }
+    
+    public Conta verificarConta( int numero){
+        for (Conta conta:contas) {
+            if (conta.getNumero() == numero){
+                return conta;
+            }
+        }
+        return null;
     }
 }
