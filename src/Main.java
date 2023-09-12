@@ -45,21 +45,20 @@ public class Main {
             System.out.println("Digite o número da conta:");
             numeroDaConta = sc.nextInt();
             Conta conta = banco.verificarConta(numeroDaConta);
+            System.out.println(conta);
             if (conta != null ){
                 System.out.println("Digite sua senha:");
                 senha = sc.next();
                 contaLogada = conta.verificarSenha(senha);
                 System.out.println(contaLogada);
             }
-            cont++;
-        } while (contaLogada==null || cont < 3);
-        if (contaLogada !=null){
-            telaDaConta();
-        }
+        } while (contaLogada==null);
+        telaDaConta();
     }
 
     private static void telaDaConta() {
         int decisao;
+        do {
         System.out.println("""
                 ====== BEM VINDO =====
                 1- Pagamento
@@ -79,7 +78,7 @@ public class Main {
                     case 1 -> {
                         System.out.println("Valor do pagamento:");
                         double pagamento = sc.nextDouble();
-                        contaLogada.pagamento(pagamento);
+                        System.out.println(contaLogada.pagamento(pagamento));
                     }
                     case 2 ->{
                         System.out.println("Valor do crédito:");
@@ -87,9 +86,6 @@ public class Main {
                         contaLogada.credito(credito);
                     }
                     case 3 -> System.out.println(contaLogada.saldo());
-                    case 4-> {
-                        return;
-                    }
 //                    case 5 -> passarDias();
                     case 6 ->{
                         if (contaLogada instanceof Corrente){
@@ -110,6 +106,7 @@ public class Main {
                         }
                     }
                 }
+        }while(decisao!=4);
     }
 
     private static Pessoa registrarPessoa() {

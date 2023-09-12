@@ -63,4 +63,15 @@ public class Conta {
     public Pessoa getTitular() {
         return titular;
     }
+
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "numero=" + numero +
+                ", saldo=" + saldo +
+                ", qtdTransacoes=" + qtdTransacoes +
+                ", titular=" + titular +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
 }
